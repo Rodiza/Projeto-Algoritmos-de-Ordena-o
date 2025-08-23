@@ -18,7 +18,7 @@ import java.util.List;
  * 
  * @author Prof. Dr. David Buzatto
  */
-public class InsertionSort extends EngineFrame {
+public class ShellSort extends EngineFrame {
     
     private int[] aleatorio;
     private int[] piorCaso;
@@ -41,7 +41,7 @@ public class InsertionSort extends EngineFrame {
     private int trocasAleatorio;
     
     
-    public InsertionSort() {
+    public ShellSort() {
         
         super(
             800,                 // largura                      / width
@@ -71,7 +71,7 @@ public class InsertionSort extends EngineFrame {
         aleatorio = new int[]{ 9, 4, 8, 10, 1, 3, 7, 5, 2, 6 };
         piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
         arrays = new ArrayList<>();
-        insertionSort(aleatorio.clone() );
+        shellSort(aleatorio.clone() );
         
         tempoParaMudar = 0.5;
         
@@ -143,7 +143,7 @@ public class InsertionSort extends EngineFrame {
         clearBackground( WHITE );
         
         //Nome da ordenação
-        drawText( "Insertion Sort", 145, 30, 60, BLACK );
+        drawText( "Shell Sort", 220, 30, 60, BLACK );
         
         //Moldura para melhor visualização
         drawRoundRectangle( 50, 100, 700, 230, 20, BLACK );
@@ -166,37 +166,38 @@ public class InsertionSort extends EngineFrame {
         desenharArray( arrays.get( copiaAtual ) );
     }
 
-    private void insertionSort( int[] array ) {
+    private void shellSort( int[] array ) {
         
         contadorTrocas = 0;
+        int n = array.length;
         
-        for(  int i = 1 ; i < array.length ; i++ ) {
+        //comeca com espacamento grande e vai diminuindo
+        for(int gap = n/2; gap > 0; gap /= 2){
             
-            int chave = array[i];
-            int j = i - 1;
-            
-            
-            while(  j >= 0 && array[j] > chave ) {
+            for(int i = gap; i < n; i++){
                 
-                array[j + 1 ] = array[j];
-                j--;
-                contadorTrocas++;
-                copiarArray( array );
-               
+                int temp = array[i];
                 
+                int j;
+                for(j = i; j >= gap && array[j - gap] > temp; j-= gap){
+                    array[j] = array[j - gap];
+                    contadorTrocas++;
+                    copiarArray(array);
+                }
+                
+                array[j] = temp;
+                copiarArray(array);
             }
-            
-                
-                array[j + 1] = chave;
-                contadorTrocas++;
-                copiarArray( array );
-            
         }
         
-        copiarArray( array );
+       
     }
     
-
+    private void trocar( int[] array, int i, int min ) {
+        int t = array[i];
+        array[i] = array[min];
+        array[min] = t;
+    }
     
     private void copiarArray( int[] array ) {
         int[] copia = new int[array.length];
@@ -242,7 +243,7 @@ public class InsertionSort extends EngineFrame {
         
         arrays.clear();
         copiaAtual = 0;
-        insertionSort( array.clone() );
+        shellSort(array.clone() );
         contadorTempo = 0;
         
     }
@@ -253,7 +254,7 @@ public class InsertionSort extends EngineFrame {
      * Instantiates the engine and starts it.
      */
     public static void main( String[] args ) {
-        new SelectionSort();
+        new ShellSort();
     }
     
 }

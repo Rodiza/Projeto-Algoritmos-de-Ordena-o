@@ -6,10 +6,9 @@ import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.BLUE;
 import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.MOUSE_BUTTON_LEFT;
 import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.RED;
 import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.WHITE;
-import java.awt.Color;
-import java.awt.Paint;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Modelo de projeto básico da JSGE.
@@ -18,7 +17,7 @@ import java.util.List;
  * 
  * @author Prof. Dr. David Buzatto
  */
-public class InsertionSort extends EngineFrame {
+public class MergeSort extends EngineFrame {
     
     private int[] aleatorio;
     private int[] piorCaso;
@@ -41,7 +40,7 @@ public class InsertionSort extends EngineFrame {
     private int trocasAleatorio;
     
     
-    public InsertionSort() {
+    public MergeSort() {
         
         super(
             800,                 // largura                      / width
@@ -71,7 +70,7 @@ public class InsertionSort extends EngineFrame {
         aleatorio = new int[]{ 9, 4, 8, 10, 1, 3, 7, 5, 2, 6 };
         piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
         arrays = new ArrayList<>();
-        insertionSort(aleatorio.clone() );
+        mergeSort(aleatorio.clone(), aleatorio.length );
         
         tempoParaMudar = 0.5;
         
@@ -143,7 +142,7 @@ public class InsertionSort extends EngineFrame {
         clearBackground( WHITE );
         
         //Nome da ordenação
-        drawText( "Insertion Sort", 145, 30, 60, BLACK );
+        drawText( "Merge Sort", 220, 30, 60, BLACK );
         
         //Moldura para melhor visualização
         drawRoundRectangle( 50, 100, 700, 230, 20, BLACK );
@@ -166,37 +165,66 @@ public class InsertionSort extends EngineFrame {
         desenharArray( arrays.get( copiaAtual ) );
     }
 
-    private void insertionSort( int[] array ) {
+    private void mergeSort( int[] array, int n ) {
+        
+        
+        
+        if(n < 2){
+            return;
+        }
+        int meio = n/2;
+        int[] esq = new int[meio];
+        int[] dir = new int[n - meio];
+        
+        //Preenchendo o array da esquerda
+        for(int i = 0; i < meio; i++){
+            esq[i] = array[i];
+        }
+        
+        //Preenchendo o array da direita
+        for(int i = meio; i < n; i++){
+            dir[i - meio] = array[i];
+        }
+        
+        mergeSort(esq, meio);
+        mergeSort(dir, n - meio);
+        
+        merge(array, esq, dir, meio, n - meio);
+       
+    }
+    
+    private void merge(
+    int array[], int[] arrEsq, int[] arrDir, int esquerda, int direita){
         
         contadorTrocas = 0;
         
-        for(  int i = 1 ; i < array.length ; i++ ) {
-            
-            int chave = array[i];
-            int j = i - 1;
-            
-            
-            while(  j >= 0 && array[j] > chave ) {
-                
-                array[j + 1 ] = array[j];
-                j--;
+        int i = 0, j = 0, k = 0;
+        
+        while(i < esquerda && j < direita){
+            if(arrEsq[i] <= arrDir[j]){
+                array[k++] = arrEsq[i++];
                 contadorTrocas++;
-                copiarArray( array );
-               
-                
+                copiarArray(array);       
             }
-            
-                
-                array[j + 1] = chave;
+            else{
+                array[k++] = arrDir[j++];
                 contadorTrocas++;
-                copiarArray( array );
-            
+                copiarArray(array);
+            }
         }
         
-        copiarArray( array );
+        while(i < esquerda){
+            array[k++] = arrEsq[i++];
+            contadorTrocas++;
+            copiarArray(array);
+        }
+        while(j < direita){
+            array[k++] = arrDir[j++];
+            contadorTrocas++;
+            copiarArray(array);
+        }
     }
     
-
     
     private void copiarArray( int[] array ) {
         int[] copia = new int[array.length];
@@ -242,7 +270,7 @@ public class InsertionSort extends EngineFrame {
         
         arrays.clear();
         copiaAtual = 0;
-        insertionSort( array.clone() );
+        mergeSort(array.clone(), array.length );
         contadorTempo = 0;
         
     }
@@ -253,7 +281,7 @@ public class InsertionSort extends EngineFrame {
      * Instantiates the engine and starts it.
      */
     public static void main( String[] args ) {
-        new SelectionSort();
+        new MergeSort();
     }
     
 }
