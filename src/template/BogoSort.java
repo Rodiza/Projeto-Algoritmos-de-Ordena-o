@@ -3,13 +3,17 @@ package template;
 import br.com.davidbuzatto.jsge.core.engine.EngineFrame;
 import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.BLACK;
 import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.BLUE;
+import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.DARKBLUE;
 import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.MOUSE_BUTTON_LEFT;
 import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.RED;
 import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.WHITE;
-import java.awt.Color;
+import br.com.davidbuzatto.jsge.core.utils.ColorUtils;
+import br.com.davidbuzatto.jsge.core.utils.PaintUtils;
 import java.awt.Paint;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Modelo de projeto básico da JSGE.
@@ -18,9 +22,10 @@ import java.util.List;
  * 
  * @author Prof. Dr. David Buzatto
  */
-public class ShellSort extends EngineFrame {
+public class BogoSort extends EngineFrame {
     
     private int[] aleatorio;
+    private Random random;
     private int[] piorCaso;
     private List<int[]> arrays;
     private int copiaAtual;
@@ -32,6 +37,7 @@ public class ShellSort extends EngineFrame {
     private int espaco;
     private int xIni;
     private int yIni;
+    private Paint horizontalGradient;
     
     private boolean botaoAleatorio;
     private boolean botaoPiorCaso;
@@ -41,7 +47,7 @@ public class ShellSort extends EngineFrame {
     private int trocasAleatorio;
     
     
-    public ShellSort() {
+    public BogoSort() {
         
         super(
             800,                 // largura                      / width
@@ -68,16 +74,24 @@ public class ShellSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[]{ 9, 4, 8, 10, 1, 3, 7, 5, 2, 6 };
+        aleatorio = new int[20];
+        random = new Random();
+    
+        
+        //Preenchendo o array aleatorio com numeros de 0 a 10
+        for(int i = 0; i < aleatorio.length; i++){
+            aleatorio[i] = random.nextInt(10);
+        }
+        
         piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
         arrays = new ArrayList<>();
-        shellSort(aleatorio.clone() );
+        bogoSort(aleatorio.clone());
         
-        tempoParaMudar = 0.5;
+        tempoParaMudar = 0.25;
         
         tamanho = 20;
         espaco = 5;
-        xIni = 275;
+        xIni = 150;
         yIni = 320;
 
     }
@@ -143,7 +157,7 @@ public class ShellSort extends EngineFrame {
         clearBackground( WHITE );
         
         //Nome da ordenação
-        drawText( "Shell Sort", 220, 30, 60, BLACK );
+        drawText( "Bogo Sort", 220, 30, 60, BLACK );
         
         //Moldura para melhor visualização
         drawRoundRectangle( 50, 100, 700, 230, 20, BLACK );
@@ -161,37 +175,19 @@ public class ShellSort extends EngineFrame {
         drawText( "Trocas:" + contadorTrocas, 525, 410, 45, BLACK );
         
         //Nome dos alunos, disciplina e professor
-        drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 7, 580, 16, BLACK );
+        drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 
+                7, 580, 16, BLACK );
         
         desenharArray( arrays.get( copiaAtual ) );
     }
 
-    private void shellSort( int[] array ) {
-        
+    private void bogoSort( int[] array ) {
         contadorTrocas = 0;
-        int n = array.length;
         
-        //comeca com espacamento grande e vai diminuindo
-        for(int gap = n/2; gap > 0; gap /= 2){
-            
-            for(int i = gap; i < n; i++){
-                
-                int temp = array[i];
-                
-                int j;
-                for(j = i; j >= gap && array[j - gap] > temp; j-= gap){
-                    array[j] = array[j - gap];
-                    contadorTrocas++;
-                    copiarArray(array);
-                }
-                
-                array[j] = temp;
-                copiarArray(array);
-            }
-        }
         
-       
     }
+    
+    
     
     
     private void copiarArray( int[] array ) {
@@ -205,7 +201,7 @@ public class ShellSort extends EngineFrame {
         
         for ( int i = 0; i < a.length; i++ ) {
             
-            int altura = tamanho * a[i];
+            int altura = tamanho * a[i] + 5;
             
             fillRectangle(
                     xIni + ( tamanho + espaco ) * i,
@@ -229,7 +225,7 @@ public class ShellSort extends EngineFrame {
                 mouseX >= x &&
                 mouseX <= x + largura &&
                 mouseY >= y &&
-                mouseY <= y +altura 
+                mouseY <= y + altura 
                );
         
     }
@@ -238,7 +234,7 @@ public class ShellSort extends EngineFrame {
         
         arrays.clear();
         copiaAtual = 0;
-        shellSort(array.clone() );
+        bogoSort(array.clone());
         contadorTempo = 0;
         
     }
@@ -249,7 +245,7 @@ public class ShellSort extends EngineFrame {
      * Instantiates the engine and starts it.
      */
     public static void main( String[] args ) {
-        new ShellSort();
+        new BogoSort();
     }
     
 }

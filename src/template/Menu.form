@@ -53,6 +53,8 @@
                               <Component id="ShellSort" alignment="0" max="32767" attributes="0"/>
                               <Component id="MergeSort" alignment="0" max="32767" attributes="0"/>
                               <Component id="BubbleSort" alignment="0" max="32767" attributes="0"/>
+                              <Component id="BogoSort" alignment="0" max="32767" attributes="0"/>
+                              <Component id="StalinSort" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -83,7 +85,11 @@
               <Component id="MergeSort" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="BubbleSort" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace pref="268" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="BogoSort" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="StalinSort" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="184" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -150,7 +156,6 @@
     <Component class="javax.swing.JButton" name="MergeSort">
       <Properties>
         <Property name="text" type="java.lang.String" value="Merge Sort"/>
-        <Property name="actionCommand" type="java.lang.String" value="Merge Sort"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MergeSortActionPerformed"/>
@@ -162,6 +167,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BubbleSortActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BogoSort">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bogo Sort"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BogoSortActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="StalinSort">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Stalin Sort"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StalinSortActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
