@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Paint;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Modelo de projeto básico da JSGE.
@@ -24,6 +25,7 @@ public class InsertionSort extends EngineFrame {
     private int[] piorCaso;
     private List<int[]> arrays;
     private int copiaAtual;
+    private Random random;
     
     private double tempoParaMudar;
     private double contadorTempo;
@@ -68,7 +70,15 @@ public class InsertionSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[]{ 9, 4, 8, 10, 1, 3, 7, 5, 2, 6 };
+        aleatorio = new int[10];
+        
+        random = new Random();
+        
+        //Preenchendo o array aleatorio com numeros de 0 a 10
+        for(int i = 0; i < aleatorio.length; i++){
+            aleatorio[i] = random.nextInt(10);
+        }
+        
         piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
         arrays = new ArrayList<>();
         insertionSort(aleatorio.clone() );
@@ -161,7 +171,7 @@ public class InsertionSort extends EngineFrame {
         drawText( "Trocas:" + contadorTrocas, 525, 410, 45, BLACK );
         
         //Nome dos alunos, disciplina e professor
-        drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 20, 580, 16, BLACK );
+        drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 7, 580, 16, BLACK );
         
         desenharArray( arrays.get( copiaAtual ) );
     }
@@ -216,7 +226,7 @@ public class InsertionSort extends EngineFrame {
                     yIni - altura,
                     tamanho,
                     altura, 
-                    BLACK
+                    DARKBLUE
             );
             
         }

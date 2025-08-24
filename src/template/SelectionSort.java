@@ -155,7 +155,7 @@ public class SelectionSort extends EngineFrame {
         drawText( "Trocas:" + contadorTrocas, 525, 410, 45, BLACK );
         
         //Nome dos alunos, disciplina e professor
-        drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 20, 580, 16, BLACK );
+        drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 7, 580, 16, BLACK );
         
         desenharArray( arrays.get( copiaAtual ) );
     }
@@ -208,7 +208,7 @@ public class SelectionSort extends EngineFrame {
                     yIni - altura,
                     tamanho,
                     altura, 
-                    BLACK
+                    DARKBLUE
             );
             
         }

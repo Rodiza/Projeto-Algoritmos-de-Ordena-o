@@ -34,6 +34,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ShellSort = new javax.swing.JButton();
         MergeSort = new javax.swing.JButton();
+        BubbleSort = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -79,6 +80,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        BubbleSort.setText("Bubble Sort");
+        BubbleSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BubbleSortActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +110,8 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(SelectionSort, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                                 .addComponent(InsertionSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ShellSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(MergeSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(MergeSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BubbleSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(47, Short.MAX_VALUE)
@@ -124,7 +133,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(ShellSort, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MergeSort, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BubbleSort, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
@@ -156,6 +167,11 @@ public class Menu extends javax.swing.JFrame {
         mergeSort.setDefaultCloseOperation( DISPOSE_ON_CLOSE );
     }//GEN-LAST:event_MergeSortActionPerformed
 
+    private void BubbleSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BubbleSortActionPerformed
+        BubbleSort bubbleSort = new BubbleSort();
+        bubbleSort.setDefaultCloseOperation( DISPOSE_ON_CLOSE );
+    }//GEN-LAST:event_BubbleSortActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -182,6 +198,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BubbleSort;
     private javax.swing.JButton InsertionSort;
     private javax.swing.JButton MergeSort;
     private javax.swing.JButton SelectionSort;

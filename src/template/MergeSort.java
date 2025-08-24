@@ -20,6 +20,7 @@ import java.util.Random;
 public class MergeSort extends EngineFrame {
     
     private int[] aleatorio;
+    private Random random;
     private int[] piorCaso;
     private List<int[]> arrays;
     private int copiaAtual;
@@ -67,12 +68,19 @@ public class MergeSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[]{ 9, 4, 8, 10, 1, 3, 7, 5, 2, 6 };
+        aleatorio = new int[10];
+        random = new Random();
+        
+        //Preenchendo o array aleatorio com numeros de 0 a 10
+        for(int i = 0; i < aleatorio.length; i++){
+            aleatorio[i] = random.nextInt(10);
+        }
+        
         piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
         arrays = new ArrayList<>();
         mergeSort(aleatorio.clone(), aleatorio.length );
         
-        tempoParaMudar = 0.5;
+        tempoParaMudar = 0.25;
         
         tamanho = 20;
         espaco = 5;
@@ -160,7 +168,7 @@ public class MergeSort extends EngineFrame {
         drawText( "Trocas:" + contadorTrocas, 525, 410, 45, BLACK );
         
         //Nome dos alunos, disciplina e professor
-        drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 20, 580, 16, BLACK );
+        drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 7, 580, 16, BLACK );
         
         desenharArray( arrays.get( copiaAtual ) );
     }
@@ -244,7 +252,7 @@ public class MergeSort extends EngineFrame {
                     yIni - altura,
                     tamanho,
                     altura, 
-                    BLACK
+                    DARKBLUE
             );
             
         }
@@ -261,7 +269,7 @@ public class MergeSort extends EngineFrame {
                 mouseX >= x &&
                 mouseX <= x + largura &&
                 mouseY >= y &&
-                mouseY <= y +altura 
+                mouseY <= y + altura 
                );
         
     }
