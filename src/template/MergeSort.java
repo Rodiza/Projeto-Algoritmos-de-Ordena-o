@@ -186,7 +186,7 @@ public class MergeSort extends EngineFrame {
 
     private void mergeSort( int[] array, int n ) {
         
-        
+        contadorTrocas = 0;
         
         if(n < 2){
             return;
@@ -214,8 +214,6 @@ public class MergeSort extends EngineFrame {
     
     private void merge(
     int array[], int[] arrEsq, int[] arrDir, int esquerda, int direita){
-        
-        contadorTrocas = 0;
         
         int i = 0, j = 0, k = 0;
         
