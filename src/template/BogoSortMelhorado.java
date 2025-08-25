@@ -11,6 +11,7 @@ import br.com.davidbuzatto.jsge.core.utils.ColorUtils;
 import br.com.davidbuzatto.jsge.core.utils.PaintUtils;
 import java.awt.Paint;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -21,7 +22,7 @@ import java.util.Random;
  * 
  * @author Prof. Dr. David Buzatto
  */
-public class StalinSort extends EngineFrame {
+public class BogoSortMelhorado extends EngineFrame {
     
     private int[] aleatorio;
     private Random random;
@@ -42,12 +43,11 @@ public class StalinSort extends EngineFrame {
     private boolean botaoPiorCaso;
     
     private int contadorTrocas;
-    private int indiceAtual;
     private int trocasPiorCaso;
     private int trocasAleatorio;
     
     
-    public StalinSort() {
+    public BogoSortMelhorado() {
         
         super(
             800,                 // largura                      / width
@@ -74,31 +74,24 @@ public class StalinSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[100];
+        aleatorio = new int[10];
         random = new Random();
     
         
         //Preenchendo o array aleatorio com numeros de 0 a 10
         for(int i = 0; i < aleatorio.length; i++){
-            aleatorio[i] = random.nextInt(100);
+            aleatorio[i] = random.nextInt(10);
         }
         
-        piorCaso = new int[100];
-        int contador = 1;
-        //Preenchendo o array de pior caso
-        for(int i = 0; i < piorCaso.length; i++){
-            piorCaso[i] = piorCaso.length - contador;
-            contador++;
-        }
-       
+        piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
         arrays = new ArrayList<>();
-        stalinSort(aleatorio.clone());
+        bogoSortMelhorado(aleatorio.clone());
         
-        tempoParaMudar = 0.25;
+        tempoParaMudar = 0.05;
         
-        tamanho = 5;
-        espaco = 2;
-        xIni = 50;
+        tamanho = 20;
+        espaco = 5;
+        xIni = 275;
         yIni = 320;
 
     }
@@ -143,7 +136,7 @@ public class StalinSort extends EngineFrame {
             
             if( botaoAleatorio ) {
                 for(int i = 0; i < aleatorio.length; i++){
-                    aleatorio[i] = random.nextInt(100);
+                    aleatorio[i] = random.nextInt(10);
                 }
                 reiniciarArray( aleatorio.clone() );
                 trocasAleatorio = contadorTrocas;
@@ -166,7 +159,7 @@ public class StalinSort extends EngineFrame {
         clearBackground( WHITE );
         
         //Nome da ordenação
-        drawText( "Stalin Sort", 220, 30, 60, BLACK );
+        drawText( "Bogo Sort Melhorado", 130, 30, 50, BLACK );
         
         //Moldura para melhor visualização
         drawRoundRectangle( 50, 100, 700, 230, 20, BLACK );
@@ -181,7 +174,7 @@ public class StalinSort extends EngineFrame {
         drawText( "Aleatorio", 285, 415, 35, BLACK );
         
         //Mostra o numero de trocas
-        drawText( "Trocas:" + contadorTrocas, 525, 410, 45, BLACK );
+        drawText( "Trocas:" + contadorTrocas, 525, 410, 20, BLACK );
         
         //Nome dos alunos, disciplina e professor
         drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 
@@ -190,23 +183,45 @@ public class StalinSort extends EngineFrame {
         desenharArray( arrays.get( copiaAtual ) );
     }
 
-    private void stalinSort( int[] array ) {
+    private void bogoSortMelhorado(int[] array) {
         contadorTrocas = 0;
-        int n = array.length;
-        int maior = array[0];
-        
-        for(int i = 0; i < n - 1; i++){
-            indiceAtual = i;
-            
-            if(array[i + 1] < maior){
-                array[i + 1] = 0;
-                copiarArray(array);
-            } else{
-                maior = array[i + 1];
+        while (!estaOrdenado(array)) {
+            int primeiroIndiceDesordenado = primeiroIndiceDesordenado(array);
+            embaralhaArray(array, primeiroIndiceDesordenado);
+            copiarArray(array);
+        }
+    }
+
+    private boolean estaOrdenado(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                return false;
             }
         }
-        
+        return true;
     }
+
+    // Acha o primeiro indice em que o array esta fora de ordem
+    private int primeiroIndiceDesordenado(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                return i;
+            }
+        }
+        return arr.length - 1;
+    }
+
+    private void embaralhaArray(int[] array, int indiceInicial) {
+        Random aleatorio = new Random();
+        for (int i = indiceInicial; i < array.length; i++) {
+            int indiceAleatorio = aleatorio.nextInt(array.length - indiceInicial) + indiceInicial;
+            int temp = array[i];
+            array[i] = array[indiceAleatorio];
+            array[indiceAleatorio] = temp;
+            contadorTrocas++;
+        }
+    }
+    
     
     
     
@@ -221,7 +236,7 @@ public class StalinSort extends EngineFrame {
         
         for ( int i = 0; i < a.length; i++ ) {
             
-            int altura = 2 * a[i] + 1;
+            int altura = tamanho * a[i];
             
             fillRectangle(
                     xIni + ( tamanho + espaco ) * i,
@@ -254,7 +269,7 @@ public class StalinSort extends EngineFrame {
         
         arrays.clear();
         copiaAtual = 0;
-        stalinSort(array.clone());
+        bogoSortMelhorado(array.clone());
         contadorTempo = 0;
         
     }
@@ -265,7 +280,7 @@ public class StalinSort extends EngineFrame {
      * Instantiates the engine and starts it.
      */
     public static void main( String[] args ) {
-        new StalinSort();
+        new BogoSortMelhorado();
     }
     
 }

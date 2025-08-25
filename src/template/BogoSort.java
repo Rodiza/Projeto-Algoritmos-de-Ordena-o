@@ -74,7 +74,7 @@ public class BogoSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[20];
+        aleatorio = new int[10];
         random = new Random();
     
         
@@ -87,11 +87,11 @@ public class BogoSort extends EngineFrame {
         arrays = new ArrayList<>();
         bogoSort(aleatorio.clone());
         
-        tempoParaMudar = 0.25;
+        tempoParaMudar = 0.05;
         
         tamanho = 20;
         espaco = 5;
-        xIni = 150;
+        xIni = 275;
         yIni = 320;
 
     }
@@ -135,7 +135,9 @@ public class BogoSort extends EngineFrame {
             }
             
             if( botaoAleatorio ) {
-                
+                for(int i = 0; i < aleatorio.length; i++){
+                    aleatorio[i] = random.nextInt(10);
+                }
                 reiniciarArray( aleatorio.clone() );
                 trocasAleatorio = contadorTrocas;
                 System.out.println(" ALEATORIO" );
@@ -172,7 +174,7 @@ public class BogoSort extends EngineFrame {
         drawText( "Aleatorio", 285, 415, 35, BLACK );
         
         //Mostra o numero de trocas
-        drawText( "Trocas:" + contadorTrocas, 525, 410, 45, BLACK );
+        drawText( "Trocas:" + contadorTrocas, 525, 410, 20, BLACK );
         
         //Nome dos alunos, disciplina e professor
         drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 
@@ -185,6 +187,35 @@ public class BogoSort extends EngineFrame {
         contadorTrocas = 0;
         
         
+        while(!estaOrdenado(array)){
+            embaralhaArray(array);
+            contadorTrocas++;
+            copiarArray(array);
+        }
+        
+    }
+    
+    private boolean estaOrdenado(int[] array){
+        for(int i = 0; i < array.length - 1; i++){
+            if(array[i] > array[i + 1]){
+                return false;
+            }
+        }
+        System.out.println("ORDENADO!!!!!");
+        return true;
+    }
+    
+    private void embaralhaArray(int[] array){
+        Random aleatorio = new Random();
+        for(int i = 0; i < array.length; i++){
+            //decide um indice aleatorio para o elemento
+            int indiceAleatorio = aleatorio.nextInt(array.length);
+            
+            //troca o elemento para o indice aleatorio
+            int temp = array[i];
+            array[i] = array[indiceAleatorio];
+            array[indiceAleatorio] = temp;
+        }
     }
     
     
@@ -201,7 +232,7 @@ public class BogoSort extends EngineFrame {
         
         for ( int i = 0; i < a.length; i++ ) {
             
-            int altura = tamanho * a[i] + 5;
+            int altura = tamanho * a[i];
             
             fillRectangle(
                     xIni + ( tamanho + espaco ) * i,
