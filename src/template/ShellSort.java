@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Paint;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Modelo de projeto básico da JSGE.
@@ -22,6 +23,7 @@ public class ShellSort extends EngineFrame {
     
     private int[] aleatorio;
     private int[] piorCaso;
+    private Random random;
     private List<int[]> arrays;
     private int copiaAtual;
     
@@ -68,7 +70,13 @@ public class ShellSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[]{ 9, 4, 8, 10, 1, 3, 7, 5, 2, 6 };
+        aleatorio = new int[10];
+        random = new Random();
+        
+        for(int i = 0; i < aleatorio.length; i++){
+            aleatorio[i] = random.nextInt(10);
+        }
+        
         piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
         arrays = new ArrayList<>();
         shellSort(aleatorio.clone() );
@@ -121,7 +129,10 @@ public class ShellSort extends EngineFrame {
             }
             
             if( botaoAleatorio ) {
-                
+                for(int i = 0; i < aleatorio.length; i++){
+                    aleatorio[i] = random.nextInt(10);
+                }
+        
                 reiniciarArray( aleatorio.clone() );
                 trocasAleatorio = contadorTrocas;
                 System.out.println(" ALEATORIO" );

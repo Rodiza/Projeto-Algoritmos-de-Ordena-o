@@ -74,7 +74,6 @@ public class BubbleSort extends EngineFrame {
         
         aleatorio = new int[10];
         random = new Random();
-        horizontalGradient = PaintUtils.getHorizontalGradientPaint( 20, 20, 100, 155, ColorUtils.getColor( 0xFFFF6500 ), ColorUtils.getColor( 0xFF1E3E62 ) );
         
         //Preenchendo o array aleatorio com numeros de 0 a 10
         for(int i = 0; i < aleatorio.length; i++){
@@ -133,7 +132,9 @@ public class BubbleSort extends EngineFrame {
             }
             
             if( botaoAleatorio ) {
-                
+                for(int i = 0; i < aleatorio.length; i++){
+                    aleatorio[i] = random.nextInt(10);
+                }
                 reiniciarArray( aleatorio.clone() );
                 trocasAleatorio = contadorTrocas;
                 System.out.println(" ALEATORIO" );
