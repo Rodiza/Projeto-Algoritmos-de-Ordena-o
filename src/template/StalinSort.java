@@ -78,7 +78,7 @@ public class StalinSort extends EngineFrame {
         random = new Random();
     
         
-        //Preenchendo o array aleatorio com numeros de 0 a 10
+        //Preenchendo o array aleatorio com numeros de 0 a 100
         for(int i = 0; i < aleatorio.length; i++){
             aleatorio[i] = random.nextInt(100);
         }
