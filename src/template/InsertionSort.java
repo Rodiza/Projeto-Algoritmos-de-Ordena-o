@@ -70,24 +70,31 @@ public class InsertionSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[10];
+        aleatorio = new int[100];
         
         random = new Random();
         
         //Preenchendo o array aleatorio com numeros de 0 a 10
         for(int i = 0; i < aleatorio.length; i++){
-            aleatorio[i] = random.nextInt(10);
+            aleatorio[i] = random.nextInt(100);
         }
         
-        piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
+        piorCaso = new int[100];
+        int contador = 1;
+        
+        for(int i = 0; i < piorCaso.length; i++){
+            piorCaso[i] = piorCaso.length - contador;
+            contador++;
+        }
+        
         arrays = new ArrayList<>();
         insertionSort(aleatorio.clone() );
         
-        tempoParaMudar = 0.5;
+        tempoParaMudar = 0.05;
         
-        tamanho = 20;
-        espaco = 5;
-        xIni = 275;
+        tamanho = 5;
+        espaco = 2;
+        xIni = 50;
         yIni = 320;
 
     }
@@ -131,7 +138,9 @@ public class InsertionSort extends EngineFrame {
             }
             
             if( botaoAleatorio ) {
-                
+                for(int i = 0; i < aleatorio.length; i++){
+                    aleatorio[i] = random.nextInt(100);
+                }
                 reiniciarArray( aleatorio.clone() );
                 trocasAleatorio = contadorTrocas;
                 System.out.println(" ALEATORIO" );
@@ -168,7 +177,7 @@ public class InsertionSort extends EngineFrame {
         drawText( "Aleatorio", 285, 415, 35, BLACK );
         
         //Mostra o numero de trocas
-        drawText( "Trocas:" + contadorTrocas, 525, 410, 45, BLACK );
+        drawText( "Trocas:" + contadorTrocas, 525, 410, 25, BLACK );
         
         //Nome dos alunos, disciplina e professor
         drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 7, 580, 16, BLACK );
@@ -219,7 +228,7 @@ public class InsertionSort extends EngineFrame {
         
         for ( int i = 0; i < a.length; i++ ) {
             
-            int altura = tamanho * a[i];
+            int altura = 2 * a[i] + 1;
             
             fillRectangle(
                     xIni + ( tamanho + espaco ) * i,

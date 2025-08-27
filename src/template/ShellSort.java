@@ -70,28 +70,29 @@ public class ShellSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[20];
+        aleatorio = new int[100];
         random = new Random();
         
         for(int i = 0; i < aleatorio.length; i++){
-            aleatorio[i] = random.nextInt(20);
+            aleatorio[i] = random.nextInt(100);
         }
         
-        piorCaso = new int[20];
+        piorCaso = new int[100];
         int contador = 1;
         //Preenchendo o array de pior caso
         for(int i = 0; i < piorCaso.length; i++){
             piorCaso[i] = piorCaso.length - contador;
             contador++;
         }
+        
         arrays = new ArrayList<>();
         shellSort(aleatorio.clone() );
         
-        tempoParaMudar = 0.1;
+        tempoParaMudar = 0.05;
         
-        tamanho = 11;
-        espaco = 5;
-        xIni = 200;
+        tamanho = 5;
+        espaco = 2;
+        xIni = 50;
         yIni = 320;
 
     }
@@ -136,7 +137,7 @@ public class ShellSort extends EngineFrame {
             
             if( botaoAleatorio ) {
                 for(int i = 0; i < aleatorio.length; i++){
-                    aleatorio[i] = random.nextInt(20);
+                    aleatorio[i] = random.nextInt(100);
                 }
         
                 reiniciarArray( aleatorio.clone() );
@@ -222,7 +223,7 @@ public class ShellSort extends EngineFrame {
         
         for ( int i = 0; i < a.length; i++ ) {
             
-            int altura = tamanho * a[i];
+            int altura = 2 * a[i] + 1;
             
             fillRectangle(
                     xIni + ( tamanho + espaco ) * i,

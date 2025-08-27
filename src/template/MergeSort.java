@@ -73,7 +73,7 @@ public class MergeSort extends EngineFrame {
         
         //Preenchendo o array aleatorio com numeros de 0 a 10
         for(int i = 0; i < aleatorio.length; i++){
-            aleatorio[i] = random.nextInt(10);
+            aleatorio[i] = random.nextInt(20);
         }
         
         piorCaso = new int[20];
@@ -87,9 +87,9 @@ public class MergeSort extends EngineFrame {
         arrays = new ArrayList<>();
         mergeSort(aleatorio.clone(), aleatorio.length );
         
-        tempoParaMudar = 0.25;
+        tempoParaMudar = 0.1;
         
-        tamanho = 15;
+        tamanho = 11;
         espaco = 5;
         xIni = 200;
         yIni = 320;
@@ -187,7 +187,7 @@ public class MergeSort extends EngineFrame {
     private void mergeSort( int[] array, int n ) {
         
         contadorTrocas = 0;
-        
+        copiarArray(array);
         if(n < 2){
             return;
         }

@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+ 
 /**
  * Modelo de projeto básico da JSGE.
  * 
@@ -64,21 +64,29 @@ public class SelectionSort extends EngineFrame {
     @Override
     public void create() {
         
-        aleatorio = new int[10];
+        aleatorio = new int[100];
         random = new Random();
         
         for(int i = 0; i < aleatorio.length; i++){
-            aleatorio[i] = random.nextInt(10);
+            aleatorio[i] = random.nextInt(100);
         }
-        piorCaso = new int[] { 10, 9, 8,7, 6, 5, 4, 3, 2, 1 };
+        
+        piorCaso = new int[100];//Preenchendo o array de pior caso
+        int contador = 1;
+        
+        for(int i = 0; i < piorCaso.length; i++){
+            piorCaso[i] = piorCaso.length - contador;
+            contador++;
+        }
+        
         arrays = new ArrayList<>();
         selectionSort( aleatorio.clone() );
         
-        tempoParaMudar = 0.5;
+        tempoParaMudar = 0.1;
         
-        tamanho = 20;
-        espaco = 5;
-        xIni = 275;
+        tamanho = 5;
+        espaco = 2;
+        xIni = 50;
         yIni = 320;
 
     }
@@ -124,7 +132,7 @@ public class SelectionSort extends EngineFrame {
             if( botaoAleatorio ) {
                 
                 for(int i = 0; i < aleatorio.length; i++){
-                    aleatorio[i] = random.nextInt(10);
+                    aleatorio[i] = random.nextInt(100);
                 }
                 
                 reiniciarArray( aleatorio.clone() );
@@ -212,7 +220,7 @@ public class SelectionSort extends EngineFrame {
         
         for ( int i = 0; i < a.length; i++ ) {
             
-            int altura = tamanho * a[i];
+            int altura = 2 * a[i] + 1;
             
             fillRectangle(
                     xIni + ( tamanho + espaco ) * i,
