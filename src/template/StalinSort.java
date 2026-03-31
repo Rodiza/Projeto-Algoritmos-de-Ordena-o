@@ -94,7 +94,7 @@ public class StalinSort extends EngineFrame {
         arrays = new ArrayList<>();
         stalinSort(aleatorio.clone());
         
-        tempoParaMudar = 0.25;
+        tempoParaMudar = 0.1;
         
         tamanho = 5;
         espaco = 2;
