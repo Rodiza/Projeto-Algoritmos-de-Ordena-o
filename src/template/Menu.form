@@ -52,19 +52,22 @@
                           <Component id="MergeSort" alignment="0" max="32767" attributes="0"/>
                           <Component id="BubbleSort" alignment="0" max="32767" attributes="0"/>
                           <Component id="BogoSort" alignment="0" max="32767" attributes="0"/>
-                          <Component id="StalinSort" alignment="0" max="32767" attributes="0"/>
                           <Component id="BogoSortMelhorado" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="StalinSort" alignment="0" max="32767" attributes="0"/>
+                              <Component id="StalinSort1" alignment="0" pref="139" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="161" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="47" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="Titulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
@@ -92,8 +95,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="BogoSortMelhorado" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="StalinSort" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace pref="142" max="32767" attributes="0"/>
+              <Component id="StalinSort" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="StalinSort1" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -195,6 +200,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BogoSortMelhoradoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="StalinSort1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Counting Sort"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StalinSort1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

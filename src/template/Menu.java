@@ -38,6 +38,7 @@ public class Menu extends javax.swing.JFrame {
         BogoSort = new javax.swing.JButton();
         StalinSort = new javax.swing.JButton();
         BogoSortMelhorado = new javax.swing.JButton();
+        StalinSort1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -110,6 +111,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        StalinSort1.setText("Counting Sort");
+        StalinSort1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StalinSort1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,14 +142,16 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(MergeSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BubbleSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BogoSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(StalinSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BogoSortMelhorado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(8, 8, 8)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(8, 8, 8))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(StalinSort, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(StalinSort1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))))
+                .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Titulo)
                 .addGap(44, 44, 44))
         );
@@ -167,8 +177,10 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BogoSortMelhorado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(StalinSort, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addComponent(StalinSort, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(StalinSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
@@ -220,6 +232,11 @@ public class Menu extends javax.swing.JFrame {
         bogoSortMelhorado.setDefaultCloseOperation( DISPOSE_ON_CLOSE );
     }//GEN-LAST:event_BogoSortMelhoradoActionPerformed
 
+    private void StalinSort1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StalinSort1ActionPerformed
+        CountingSort countingSort = new CountingSort();
+        countingSort.setDefaultCloseOperation( DISPOSE_ON_CLOSE );
+    }//GEN-LAST:event_StalinSort1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +271,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton SelectionSort;
     private javax.swing.JButton ShellSort;
     private javax.swing.JButton StalinSort;
+    private javax.swing.JButton StalinSort1;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
