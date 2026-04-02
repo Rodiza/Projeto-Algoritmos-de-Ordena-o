@@ -57,10 +57,9 @@
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="StalinSort" alignment="0" max="32767" attributes="0"/>
-                              <Component id="StalinSort1" alignment="0" pref="139" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="StalinSort" alignment="0" max="32767" attributes="0"/>
+                          <Component id="StalinSort1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="BucketSort" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -98,7 +97,9 @@
               <Component id="StalinSort" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="StalinSort1" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace pref="101" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="BucketSort" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -208,6 +209,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StalinSort1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BucketSort">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bucket Sort"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BucketSortActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

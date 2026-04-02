@@ -39,6 +39,7 @@ public class Menu extends javax.swing.JFrame {
         StalinSort = new javax.swing.JButton();
         BogoSortMelhorado = new javax.swing.JButton();
         StalinSort1 = new javax.swing.JButton();
+        BucketSort = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -118,6 +119,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        BucketSort.setText("Bucket Sort");
+        BucketSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BucketSortActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,9 +154,9 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(8, 8, 8))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(StalinSort, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(StalinSort1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)))))
+                            .addComponent(StalinSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(StalinSort1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BucketSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -180,7 +188,9 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(StalinSort, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(StalinSort1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BucketSort, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
@@ -237,6 +247,12 @@ public class Menu extends javax.swing.JFrame {
         countingSort.setDefaultCloseOperation( DISPOSE_ON_CLOSE );
     }//GEN-LAST:event_StalinSort1ActionPerformed
 
+    private void BucketSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BucketSortActionPerformed
+        
+        BucketSort bucketSort = new BucketSort();
+        bucketSort.setDefaultCloseOperation( DISPOSE_ON_CLOSE );
+    }//GEN-LAST:event_BucketSortActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,6 +282,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton BogoSort;
     private javax.swing.JButton BogoSortMelhorado;
     private javax.swing.JButton BubbleSort;
+    private javax.swing.JButton BucketSort;
     private javax.swing.JButton InsertionSort;
     private javax.swing.JButton MergeSort;
     private javax.swing.JButton SelectionSort;

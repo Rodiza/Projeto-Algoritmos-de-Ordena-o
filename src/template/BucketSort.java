@@ -3,9 +3,10 @@
     import br.com.davidbuzatto.jsge.core.engine.EngineFrame;
     import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.BLACK;
     import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.BLUE;
+    import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.DARKBLUE;
     import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.MOUSE_BUTTON_LEFT;
     import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.RED;
-    import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.WHITE;
+import static br.com.davidbuzatto.jsge.core.engine.EngineFrame.WHITE;
     import java.awt.Color;
     import java.awt.Paint;
     import java.util.ArrayList;
@@ -19,7 +20,7 @@
      * 
      * @author Prof. Dr. David Buzatto
      */
-    public class CountingSort extends EngineFrame {
+    public class BucketSort extends EngineFrame {
 
         private int[] aleatorio;
         private int[] piorCaso;
@@ -43,7 +44,7 @@
         private int trocasAleatorio;
 
 
-        public CountingSort() {
+        public BucketSort() {
 
             super(
                 800,                 // largura                      / width
@@ -88,9 +89,9 @@
             }
             
             arrays = new ArrayList<>();
-            countingSort(aleatorio.clone());
+            bucketSort(aleatorio.clone());
 
-            tempoParaMudar = 0.05;
+            tempoParaMudar = 0.02;
 
             tamanho = 5;
             espaco = 2;
@@ -187,7 +188,11 @@
             //Nome dos alunos, disciplina e professor
             drawText( "Davi B. Rosa e Rodrigo C. Garcia - Estrutura de Dados - Prof. Dr. David Buzatto", 7, 580, 16, BLACK );
 
-            desenharArray( arrays.get( copiaAtual ) );
+            if ( !arrays.isEmpty() ) {
+                
+                desenharArray(arrays.get(copiaAtual));
+                
+            }
         }
         
         //Método para encontrar o maior valor de um array
@@ -207,39 +212,42 @@
             return max;
         }
 
-        private void countingSort( int[] array) {   
-
-            contadorTrocas = 0;
+        private void bucketSort( int[] array) {   
 
             int n = array.length;
-            int k = valorMaximo( array );   //Encontar o mnaior valor do array
+            final int K = 10;
+            int[][] buckets = new int[K][n];
+            int[] c = new int[K];
+            int t1 = 10;
+            int t2 = 1;
+            int max = -1;
+            boolean first = true;
             
-            int[] c = new int[k+1];
-            int[] b = new int[n];
-
-            // contagem
-            for ( int i = 0; i < n; i++ ) {
-                
-                c[array[i]]++;
-                
+            while ( max < 0 || max / t2 != 0 ) {
+            // distribuição
+                for ( int i = 0; i < n; i++ ) {
+                    int p = array[i] % t1 / t2;
+                    buckets[p][c[p]++] = array[i];
+                    if ( first ) {
+                        max = max < array[i] ? array[i] : max;
+                        contadorTrocas++;
+                    }
+                }
+                first = false;
+                // coleta
+                int k = 0;
+                for ( int i = 0; i < K; i++ ) {
+                    for ( int j = 0; j < c[i]; j++ ) {
+                        array[k++] = buckets[i][j];
+                        contadorTrocas++;
+                        copiarArray( array );
+                    }
+                    c[i] = 0;
+                }
+                t2 = t1;
+                t1 *= 10;
             }
 
-            // acumulação
-            for ( int i = 1; i <= k; i++ ) {
-                
-                c[i] += c[i-1];
-                contadorTrocas++;
-                
-            }
-            // reposicionamento
-            for ( int i = n-1; i >= 0; i-- ) {
-                
-                c[array[i]]--;
-                b[c[array[i]]] = array[i];
-                
-                copiarArray( b );
-                contadorTrocas++;
-            }
             
         }
 
@@ -289,7 +297,8 @@
 
             arrays.clear();
             copiaAtual = 0;
-            countingSort( array.clone() );
+            contadorTrocas = 0;
+            bucketSort( array.clone() );
             contadorTempo = 0;
 
         }
@@ -300,7 +309,7 @@
          * Instantiates the engine and starts it.
          */
         public static void main( String[] args ) {
-            new CountingSort();
+            new BucketSort();
         }
 
     }
